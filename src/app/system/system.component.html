@@ -1,0 +1,78 @@
+<div class="main-container">
+  @if (userData) {
+    <app-navbar
+      [userName]="userData.firstName + ' ' + userData.lastName"
+      [userPassportNumber]="userData.passportNumber"
+      [notificationCount]="2">
+    </app-navbar>
+  }
+
+  <div class="system-content">
+    <div class="wrapper">
+      <div class="breadcrumb">
+        <a href="/system">Breadcrumb 1</a> →
+        <a href="/system">Breadcrumb 2</a> →
+        <a href="/system" class="active">Breadcrumb 3</a>
+      </div>
+
+      <div class="title">{{ 'Title' | translate }}</div>
+
+      <div class="cards">
+        <app-search
+          [iconColor]="'#0000004D'"
+          [inputColor]="'#4D4D4D80'"
+          [placeholderColor]="'#4D4D4D80'"
+          [borderColor]="'#0000000D'"
+          [backgroundColor]="'#0000000D'"
+        ></app-search>
+
+        <div class="main-content">
+          <div class="accounts-container">
+            <div class="account-card">
+              @for(account of bankAccounts; track account.accountNumber) {
+                <div class="individual-card">
+                  <div class="account-details account-name">
+                    <img src="Visa-Card.png" alt="Card" class="account-image">
+                    <div>
+                      <div class="label">{{ 'Account Type' | translate }}</div>
+                      <div class="value">{{ account.accountType.toUpperCase() }}</div>
+                    </div>
+                  </div>
+                  <div class="number">
+                    <div class="account-details">
+                      <div class="label">{{ 'Account Number' | translate }}</div>
+                      <div class="hidden-data">
+                        <div class="value">{{ showAccountNumber ? account.accountNumber : '************' }}</div>
+                        <button (click)="toggleShowAccountNumber()"><img src="eyeHide.png" alt="Eye"></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="account-details">
+                    <div>
+                      <div class="label">{{ 'Currency' | translate }}</div>
+                      <div class="value">{{ account.currency }}</div>
+                    </div>
+                  </div>
+                  <div class="number">
+                    <div class="account-details">
+                      <div class="label">{{ 'Balance' | translate }}</div>
+                      <div class="hidden-data small">
+                        <div class="value">{{ showBalanceNumber ? account.balance + ' ' + account.currency : "••••••" }}</div>
+                        <button (click)="toggleShowBalanceNumber()"><img src="eyeHide.png" alt="Eye"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+          @if (additionalData) {
+            <div class="additional-info">
+              <div class="header">{{'ADDITIONAL INFO' | translate}}</div>
+              <div class="content">{{ additionalData.description }}</div>
+            </div>
+          }
+        </div>
+    </div>
+  </div>
+</div>

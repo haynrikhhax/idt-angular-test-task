@@ -1,0 +1,84 @@
+<div class="login-container">
+  <div class="left-section">
+    <div class="left-section-content">
+      <div class="slogan">
+        <img src="/IDBank-logo.png" alt="IDBank Logo" />
+        <span>
+          {{ 'Make all transactions' | translate }} <br>
+          {{ 'without leaving' | translate }} <br>
+          {{ 'home' | translate }}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="right-section">
+    <app-language-picker bgColor="#ffffff"></app-language-picker>
+    <div class="login-section">
+      <div class="login">
+        <h2>{{ 'LOG IN' | translate }}</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-data">
+            <div class="phone">
+              <div class="code">
+                <label>{{ 'Select Code' | translate }}</label>
+                @if(countryCodes) {
+                  <app-dropdown
+                    [items]="countryCodes"
+                    [selectedItem]="selectedCountryCode"
+                  >
+                    <ng-template #dropdownTemplate let-items="items">
+                      @for (countryCode of countryCodes; track countryCode.countryCode) {
+                        <div class="dropdown-item actual-value" (click)="selectItem(countryCode)">
+                          <span class="number-span">+ {{ countryCode.countryCode }}</span>
+                          <span class="name-span">{{ countryCode.countryName }}</span>
+                        </div>
+                      }
+                    </ng-template>
+                  </app-dropdown>
+                }
+              </div>
+              <div class="number">
+                <label for="phoneNumber">{{ 'Enter mobile number' | translate }}</label>
+                <input
+                  id="phoneNumber"
+                  type="text"
+                  placeholder="93 222202"
+                  formControlName="phoneNumber"
+                />
+              </div>
+            </div>
+
+            @if(userExists) {
+              <div class="password">
+                <label for="password">{{ 'Password'| translate }}</label>
+                <div class="password-input-container">
+                  <input
+                    id="password"
+                    type="{{ isPasswordVisible ? 'text' : 'password' }}"
+                    formControlName="password"
+                    [placeholder]="'Enter your password' | translate"
+                  />
+                  <button
+                    type="button"
+                    class="password-toggle-button"
+                    (click)="togglePasswordVisibility()">
+                    <img src="eyeHide.png" alt="Hide/Show">
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </form>
+        <div class="button-container">
+          <button
+            (click)="userExists ? login() : checkUserExists()"
+            [disabled]="loginForm.invalid"
+            [ngClass]="loginForm.invalid ? 'disabled' : ''"
+          >
+            {{ buttonText | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

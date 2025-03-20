@@ -1,0 +1,27 @@
+$text-color: #ffffff;
+
+.language {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: var(--text-color, black);
+  height: 5dvh;
+
+
+  ul {
+    display: flex;
+    gap: 10px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+
+    li {
+      cursor: pointer;
+      padding-right: 5px;
+    }
+
+    li:first-child {
+      border-right: 1px solid var(--text-color, black);
+    }
+  }
+}

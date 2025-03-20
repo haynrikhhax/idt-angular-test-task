@@ -1,0 +1,21 @@
+<div [ngClass]=" selectedItem?.countryCode ? 'dropdown' : 'company-dropdown'" (click)="toggleDropdown($event)">
+  @if(selectedItem?.countryCode) {
+    <div class="selected-item">
+      <span>+{{ selectedItem?.countryCode }}</span>
+      <img src="dropdown.png" alt="Dropdown Icon" [ngClass]="{ 'rotated': isDropdownOpen }"/>
+    </div>
+  } @else {
+    <div class="selected-company">
+      <img src="arrow-down.png" alt="Dropdown Icon" [ngClass]="{ 'rotated': isDropdownOpen }"/>
+    </div>
+  }
+
+  @if (isDropdownOpen) {
+    <div class="dropdown-list">
+      <div class="dropdown-item close">
+        <img src="/closeButton.png" alt="Close Button" (click)="closeDropdown($event)">
+      </div>
+      <ng-container *ngTemplateOutlet="dropdownTemplate; context: { items: items }"></ng-container>
+    </div>
+  }
+</div>

@@ -1,0 +1,11 @@
+<div class="language">
+  <ul>
+    @for(lang of (['hy', 'ru', 'en']); track $index) {
+      @if ((languageService.selectedLanguage$ | async) !== lang) {
+        <li (click)="setLanguage(lang)">
+          {{ lang.toUpperCase() | translate }}
+        </li>
+      }
+    }
+  </ul>
+</div>

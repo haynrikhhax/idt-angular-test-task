@@ -1,0 +1,158 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background: #4d4d4d;
+  box-shadow: 0px 4px 5px -2px #0000002B;
+  box-shadow: 0px 8px 20px -3px #00000026;
+  color: white;
+  padding: 12px 20px;
+  align-items: center;
+  height: 5dvh;
+
+  a {
+    width: 110px;
+    height: 20px;
+  }
+
+  .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6600;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .userNameAndPassport {
+        width: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 12px;
+        letter-spacing: 0;
+        color: white;
+        text-align: right;
+        gap: 8px;
+
+        .dropdown-item {
+          align-items: center;
+          color: #4D4D4D;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          padding: 12px 20px;
+          font-size: 10px;
+
+          &.close {
+            cursor: default;
+            justify-content: flex-end;
+
+            img {
+              cursor: pointer;
+            }
+          }
+
+          .iconAndName {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            gap: 10px;
+            font-size: 12px;
+          }
+
+          &.actual-value {
+            .number-span, .name-span {
+              align-items: center;
+              display: flex;
+            }
+
+            .number-span {
+              justify-content: start;
+            }
+
+            .name-span {
+              justify-content: end;
+              width: 50px;
+            }
+
+            &:hover {
+              background-color: rgba(77, 77, 77, 0.5);
+            }
+          }
+        }
+
+        div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+
+          span {
+            font-weight: 400;
+            font-size: 10px;
+          }
+        }
+
+      }
+
+      .user-avatar {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 10px;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        cursor: pointer;
+
+        .badge {
+          position: absolute;
+          top: -10px;
+          right: 0px;
+          background: red;
+          color: white;
+          font-size: 10px;
+          padding: 2px 5px;
+          border-radius: 50%;
+        }
+      }
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

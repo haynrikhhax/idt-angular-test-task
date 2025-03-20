@@ -1,0 +1,53 @@
+<nav class="navbar">
+  <a [routerLink]="['/system']">
+    <img src="IDBusiness-logo.png" alt="ID Business">
+  </a>
+  <div class="nav-actions">
+    <app-search
+      [iconColor]="'#ffffff'"
+      [inputColor]="'#ffffff'"
+      [placeholderColor]="'#ffffff'"
+      [borderColor]="'#ffffff'"
+      [backgroundColor]="'#4d4d4d'"
+    ></app-search>
+
+    <div class="user-info">
+      <div class="userNameAndPassport">
+        <span>{{ userName }}</span>
+        <div>
+          <span>{{ userPassportNumber }}</span>
+          @if(companies) {
+            <app-dropdown
+              [items]="companies"
+              [selectedItem]="selectedCompany"
+            >
+              <ng-template #dropdownTemplate let-items="items">
+                @for (company of companies; track $index) {
+                  <div class="dropdown-item actual-value" (click)="selectItem(company)">
+                    <div class="iconAndName">
+                      <img src="threeDot.png" alt="Dots">
+                      <span class="number-span">{{ company.name }}</span>
+                    </div>
+                    <span class="name-span">{{ company.level }}</span>
+                  </div>
+                }
+              </ng-template>
+            </app-dropdown>
+          }
+        </div>
+      </div>
+      <img src="userAvatar.jpg" alt="User" class="user-avatar">
+    </div>
+    <div class="nav-icons">
+      <span class="icon"><img src="bell.png" alt="Bell"><span class="badge">{{ notificationCount }}</span></span>
+      <span class="icon"><img src="message.png" alt="Message"><span class="badge">{{ notificationCount }}</span></span>
+      <span class="icon"><img src="settings.png" alt="Settings"></span>
+    </div>
+
+    <app-language-picker bgColor="#4d4d4d"></app-language-picker>
+
+    <button class="logout-btn" (click)="logout()">
+      <img src="logout.png" alt="Logout">
+    </button>
+  </div>
+</nav>
